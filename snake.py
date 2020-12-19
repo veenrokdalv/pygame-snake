@@ -13,7 +13,7 @@ class Snake:
         self.pixel = pixel
 
         # Settings snake
-        self.length_snake = 1
+        self.length = 1
         self.body = []
         self.direction = 'up'
         self.surface_block = pg.Surface((self.pixel, self.pixel))
@@ -23,9 +23,16 @@ class Snake:
 
         self.surface_block.fill((0, 249, 0))
 
-
     def blit(self):
-        self.window.blit(self.surface_block, self.block_position)
+        self.control_length()
+        for block in self.body:
+            self.window.blit(self.surface_block, block)
+
+    def control_length(self):
+        self.body.append(self.block_position[:])
+
+        if self.length < len(self.body):
+            self.body.pop(0)
 
     def event_key(self, events_keyboard):
 
@@ -38,9 +45,11 @@ class Snake:
         if events_keyboard[pg.K_RIGHT] and self.direction != 'left':
             self.direction = 'right'
 
-        self.movement()
-
     def movement(self):
+        """
+        Changes the direction of a snake, dependence on the pressed key.
+        :return: None
+        """
         if self.direction == 'up':
             self.block_position.y -= self.pixel
         if self.direction == 'down':
@@ -53,6 +62,10 @@ class Snake:
         self.check_collision_wall()
 
     def check_collision_wall(self):
+        """
+        Check on collision with a wall.
+        :return: None
+        """
         if self.block_position.left < 0:
             self.block_position.right = pg.display.get_window_size()[0]
         elif self.block_position.right > pg.display.get_window_size()[0]:

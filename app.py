@@ -57,14 +57,12 @@ class App:
 
         self.snake.event_key(events_keyboard)
 
-
-
     def move_objects(self):
         """
         Process which sets the provision of objects at a window
         :return: None
         """
-        pass
+        self.snake.movement()
 
     def blit_objects(self):
         """
