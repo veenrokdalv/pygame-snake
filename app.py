@@ -55,15 +55,7 @@ class App:
         if events_keyboard[pg.K_ESCAPE]:
             self.close()
 
-        # Game management
-        if events_keyboard[pg.K_UP]:
-            print('Изменено направление змейки K_UP')
-        if events_keyboard[pg.K_DOWN]:
-            print('Изменено направление змейки K_DOWN')
-        if events_keyboard[pg.K_LEFT]:
-            print('Изменено направление змейки K_LEFT')
-        if events_keyboard[pg.K_RIGHT]:
-            print('Изменено направление змейки  K_RIGHT')
+        self.snake.event_key(events_keyboard)
 
 
 
