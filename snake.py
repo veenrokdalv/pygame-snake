@@ -50,8 +50,14 @@ class Snake:
         if self.direction == 'right':
             self.block_position.x += self.pixel
 
+        self.check_collision_wall()
 
-
-
-
-
+    def check_collision_wall(self):
+        if self.block_position.left < 0:
+            self.block_position.right = pg.display.get_window_size()[0]
+        elif self.block_position.right > pg.display.get_window_size()[0]:
+            self.block_position.left = 0
+        if self.block_position.top < 0:
+            self.block_position.bottom = pg.display.get_window_size()[1]
+        elif self.block_position.bottom > pg.display.get_window_size()[1]:
+            self.block_position.top = 0

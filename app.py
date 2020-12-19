@@ -19,12 +19,12 @@ class App:
             self.max_score = int(file.read())
 
         # Settings window
-        self.pixel = 10
+        self.pixel = 64
         self.background_color = (20, 20, 20)
 
         # WARMING! : Game speed depends on fps
         self.framerate = pg.time.Clock().tick
-        self.fps = 5
+        self.fps = 2
 
         # Create window
         self.window = pg.display.set_mode((width, height))
