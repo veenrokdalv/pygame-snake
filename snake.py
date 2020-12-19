@@ -1,16 +1,17 @@
 import pygame as pg
+import appmanagers as am
 
 
-class Snake:
 
-    def __init__(self, window: object, pixel: int):
+class Snake(am.MainWindow, am.ManagerScore):
+
+    def __init__(self):
         """
         Designer of a class.
         :param window: Surface, on which the snake will appear.
         :param pixel: Size virtual pixel.
         """
-        self.window = window
-        self.pixel = pixel
+        super().__init__()
 
         # Settings snake
         self.length = 1
@@ -38,11 +39,11 @@ class Snake:
 
         if events_keyboard[pg.K_UP] and self.direction != 'down':
             self.direction = 'up'
-        if events_keyboard[pg.K_DOWN] and self.direction != 'up':
+        elif events_keyboard[pg.K_DOWN] and self.direction != 'up':
             self.direction = 'down'
-        if events_keyboard[pg.K_LEFT] and self.direction != 'right':
+        elif events_keyboard[pg.K_LEFT] and self.direction != 'right':
             self.direction = 'left'
-        if events_keyboard[pg.K_RIGHT] and self.direction != 'left':
+        elif events_keyboard[pg.K_RIGHT] and self.direction != 'left':
             self.direction = 'right'
 
     def movement(self):
@@ -52,11 +53,11 @@ class Snake:
         """
         if self.direction == 'up':
             self.block_position.y -= self.pixel
-        if self.direction == 'down':
+        elif self.direction == 'down':
             self.block_position.y += self.pixel
-        if self.direction == 'left':
+        elif self.direction == 'left':
             self.block_position.x -= self.pixel
-        if self.direction == 'right':
+        elif self.direction == 'right':
             self.block_position.x += self.pixel
 
         self.check_collision_wall()

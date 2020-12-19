@@ -1,44 +1,37 @@
 import sys
 import pygame as pg
+import appmanagers as am
+from food import Food
 from snake import Snake
 
-class App:
 
-    def __init__(self, width: int = 640, height: int = 640, pixel: int = 10):
+class App(am.ManagerScore, am.MainWindow):
+
+    def __init__(self):
         """
             Initialization main settings app.
             :param width: Width window.
             :param height: Height window.
             :param pixel: size virtual pixel window.
             """
-        # Load image icon app
-        self.icon = pg.image.load('./images/icon.png')
-
-        # Load max score
-        with open('./maxscore.txt') as file:
-            self.max_score = int(file.read())
-
-        # Settings window
-        self.pixel = 64
-        self.background_color = (20, 20, 20)
+        super().__init__()
 
         # WARMING! : Game speed depends on fps
         self.framerate = pg.time.Clock().tick
-        self.fps = 2
-
-        # Create window
-        self.window = pg.display.set_mode((width, height))
-        pg.display.set_caption('Snake')
-        pg.display.set_icon(self.icon)
+        self.fps = 5
 
         # Example Snake
-        self.snake = Snake(self.window, self.pixel)
+        self.snake = Snake()
+
+        # Example Food
+        self.food = Food()
 
     def close(self):
         """
         Finishes all processes of the appendix
         :return: None
         """
+        self.save_record()
         pg.quit()
         sys.exit()
 
@@ -72,6 +65,7 @@ class App:
         self.window.fill(self.background_color)
 
         self.snake.blit()
+        self.food.blit()
 
         pg.display.update()
 
