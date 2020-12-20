@@ -56,6 +56,7 @@ class App(am.ManagerScore, am.MainWindow):
         :return: None
         """
         self.snake.movement()
+        self.food.move()
 
     def blit_objects(self):
         """
@@ -64,8 +65,8 @@ class App(am.ManagerScore, am.MainWindow):
         """
         self.window.fill(self.background_color)
 
-        self.snake.blit()
         self.food.blit()
+        self.snake.blit()
 
         pg.display.update()
 
