@@ -24,7 +24,7 @@ class App(am.ManagerScore, am.MainWindow):
         self.snake = Snake()
 
         # Example Food
-        self.food = Food()
+        self.food = Food(self.snake.block_position)
 
     def close(self):
         """

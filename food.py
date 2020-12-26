@@ -5,8 +5,10 @@ import appmanagers as am
 
 class Food(am.MainWindow):
 
-    def __init__(self):
+    def __init__(self, block_position_snake):
         super(Food, self).__init__()
+
+        self.block_position_snake = block_position_snake
 
         self.block_surface = pg.Surface((self.pixel, self.pixel))
         self.block_surface.fill((255, 38, 0))
@@ -14,7 +16,7 @@ class Food(am.MainWindow):
 
     @property
     def is_eaten(self):
-        return 1
+        return self.block_position.colliderect(self.block_position_snake)
 
 
 
