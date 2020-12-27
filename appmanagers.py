@@ -7,22 +7,24 @@ from pygame.surface import SurfaceType
 
 class MainWindow:
 
-    window: Union[Surface, SurfaceType]
-
-    def __init__(self, width: int = 640, height: int = 640, pixel: int = 10):
+    def __init__(self):
         super(MainWindow, self).__init__()
         
         # Load image icon app
         self.icon = pg.image.load('./images/icon.png')
 
         # Settings window
-        self.pixel = pixel
+        self.window_width = 840
+        self.window_height = 840
+        self.pixel = 10
         self.background_color = (20, 20, 20)
 
         # Create window
-        self.window = pg.display.set_mode((width, height))
+        self.window = pg.display.set_mode((self.window_width, self.window_height))
         pg.display.set_caption('Snake')
         pg.display.set_icon(self.icon)
+
+
 
 
 class ManagerScore:

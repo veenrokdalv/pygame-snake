@@ -26,8 +26,8 @@ class Food(am.MainWindow, am.ManagerScore):
 
     def set_position(self):
         self.block_position = self.block_surface.get_rect(topleft=(
-            randrange(0, pg.display.get_window_size()[0] - self.pixel, self.pixel),
-            randrange(0, pg.display.get_window_size()[1] - self.pixel, self.pixel)))
+            randrange(0, self.window_width - self.pixel, self.pixel),
+            randrange(0, self.window_height - self.pixel, self.pixel)))
 
     def move(self):
         if self.is_eaten:

@@ -36,8 +36,8 @@ class Snake(am.MainWindow, am.ManagerScore):
             self.body.pop(0)
     
     def reset_position(self):
-        self.block_position.x = pg.display.get_window_size()[0]//2
-        self.block_position.y = pg.display.get_window_size()[1]//2
+        self.block_position.x = self.window_width//2
+        self.block_position.y = self.window_height//2
     
     def check_collision_tail(self):
         for block in self.body[:-1]:
