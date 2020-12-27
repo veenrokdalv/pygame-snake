@@ -14,7 +14,6 @@ class Snake(am.MainWindow, am.ManagerScore):
         super().__init__()
 
         # Settings snake
-        self.length = 1
         self.body = []
         self.direction = 'up'
         self.surface_block = pg.Surface((self.pixel, self.pixel))
@@ -26,14 +25,28 @@ class Snake(am.MainWindow, am.ManagerScore):
 
     def blit(self):
         self.control_length()
+        self.check_collision_tail()
         for block in self.body:
             self.window.blit(self.surface_block, block)
 
     def control_length(self):
         self.body.append(self.block_position[:])
 
-        if self.length < len(self.body):
+        if self.score[0] + 1 < len(self.body):
             self.body.pop(0)
+    
+    def reset_position(self):
+        self.block_position.x = pg.display.get_window_size()[0]//2
+        self.block_position.y = pg.display.get_window_size()[1]//2
+    
+    def check_collision_tail(self):
+        for block in self.body[:-1]:
+            if self.block_position.colliderect(block):
+                self.save_record()
+                self.body = []
+                self.score[0] = 0
+                self.reset_position()
+
 
     def event_key(self, events_keyboard):
 

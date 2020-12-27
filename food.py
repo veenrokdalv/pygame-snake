@@ -3,7 +3,7 @@ import pygame as pg
 import appmanagers as am
 
 
-class Food(am.MainWindow):
+class Food(am.MainWindow, am.ManagerScore):
 
     def __init__(self, block_position_snake):
         super(Food, self).__init__()
@@ -32,3 +32,4 @@ class Food(am.MainWindow):
     def move(self):
         if self.is_eaten:
             self.set_position()
+            self.to_raise()

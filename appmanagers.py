@@ -26,6 +26,8 @@ class MainWindow:
 
 
 class ManagerScore:
+    # Initial number of the account
+    score = [0]
 
     def __init__(self):
         super(ManagerScore, self).__init__()
@@ -34,20 +36,20 @@ class ManagerScore:
         with open('./recordscore.txt') as file:
             self.global_record = int(file.read())
 
-        # Initial number of the account
-        self.score = 0
-
         # Record in the current session
         self.session_record = 0
 
     def save_record(self):
-        if self.score > self.global_record:
+        if self.score[0] > self.global_record:
             with open('./recordscore.txt', 'w') as file:
-                file.write(str(self.score))
+                file.write(str(self.score[0]))
 
     def reset_record(self):
         with open('./recordscore.txt', 'w') as file:
             file.write('0')
 
     def to_raise(self, number: int = 1):
-        self.score += number
+        self.score[0] += number
+
+    
+

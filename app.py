@@ -18,7 +18,7 @@ class App(am.ManagerScore, am.MainWindow):
 
         # WARMING! : Game speed depends on fps
         self.framerate = pg.time.Clock().tick
-        self.fps = 5
+        self.fps = 5 
 
         # Example Snake
         self.snake = Snake()
@@ -79,4 +79,4 @@ class App(am.ManagerScore, am.MainWindow):
             self.event_handler()
             self.move_objects()
             self.blit_objects()
-            self.framerate(self.fps)
+            self.framerate(self.fps + self.score[0])
